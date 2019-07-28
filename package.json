@@ -1,0 +1,42 @@
+{
+  "name": "single-spa-html",
+  "description": "A helper library for mounting and unmount html / web components as single-spa applications and parcels",
+  "scripts": {
+    "build": "rimraf lib && babel src --out-dir lib --ignore '**/*.test.js' --source-maps",
+    "prepublisOnly": "yarn build",
+    "check-format": "prettier '**/*' --check",
+    "test": "jest"
+  },
+  "files": [
+    "lib",
+    "typings"
+  ],
+  "keywords": [
+    "single-spa",
+    "web components",
+    "polymer"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "pretty-quick --staged"
+    }
+  },
+  "version": "1.0.0",
+  "main": "lib/single-spa-html.js",
+  "repository": "https://github.com/CanopyTax/single-spa-html.git",
+  "author": "Joel Denning <joeldenning@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-modules-umd": "^7.2.0",
+    "@babel/preset-env": "^7.5.5",
+    "@types/jest": "^24.0.15",
+    "babel-jest": "^24.8.0",
+    "husky": "^3.0.1",
+    "jest": "^24.8.0",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "rimraf": "^2.6.3"
+  }
+}
