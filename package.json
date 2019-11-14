@@ -3,7 +3,7 @@
   "description": "A helper library for mounting and unmount html / web components as single-spa applications and parcels",
   "scripts": {
     "build": "rimraf lib && babel src --out-dir lib --ignore '**/*.test.js' --source-maps",
-    "prepublisOnly": "yarn build",
+    "prepublishOnly": "yarn build",
     "check-format": "prettier '**/*' --check",
     "test": "jest"
   },
