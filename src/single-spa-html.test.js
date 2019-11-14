@@ -65,4 +65,23 @@ describe("single-spa-html", () => {
       });
     }).toThrow();
   });
+
+  it(`renders function template with custom props`, () => {
+    const lifecycles = singleSpaHtml({
+      template: props =>
+        `<some-web-component name=${props.name}></some-web-component>`,
+      domElementGetter
+    });
+
+    const domEl = domElementGetter();
+
+    return lifecycles
+      .bootstrap(props)
+      .then(() => lifecycles.mount(props))
+      .then(() => {
+        expect(domEl.innerHTML.trim()).toBe(
+          `<some-web-component name="test"></some-web-component>`
+        );
+      });
+  });
 });

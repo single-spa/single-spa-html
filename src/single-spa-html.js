@@ -10,9 +10,12 @@ export default function singleSpaHtml(opts) {
 
   opts = { ...defaultOpts, ...opts };
 
-  if (typeof opts.template !== "string" || opts.template.trim().length === 0) {
+  if (
+    (typeof opts.template !== "string" || opts.template.trim().length === 0) &&
+    typeof opts.template !== "function"
+  ) {
     throw Error(
-      `single-spa-html must be passed a 'template' opt that is a non empty string`
+      `single-spa-html must be passed a 'template' opt that is a non empty string or function`
     );
   }
 
@@ -42,7 +45,10 @@ function mount(opts, props) {
         `single-spa-html: domElementGetter did not return a valid dom element`
       );
     }
-    domEl.innerHTML = opts.template;
+    domEl.innerHTML =
+      typeof opts.template === "function"
+        ? opts.template(props)
+        : opts.template;
   });
 }
 
