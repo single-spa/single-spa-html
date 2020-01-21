@@ -25,7 +25,7 @@
   "main": "lib/single-spa-html.js",
   "repository": "https://github.com/single-spa/single-spa-html.git",
   "bugs": {
-    "url": "https://github.com/single-spa/issues"
+    "url": "https://github.com/single-spa/single-spa-html/issues"
   },
   "author": "Joel Denning <joeldenning@gmail.com>",
   "license": "MIT",
