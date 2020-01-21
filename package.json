@@ -23,7 +23,10 @@
   },
   "version": "1.1.1",
   "main": "lib/single-spa-html.js",
-  "repository": "https://github.com/CanopyTax/single-spa-html.git",
+  "repository": "https://github.com/single-spa/single-spa-html.git",
+  "bugs": {
+    "url": "https://github.com/single-spa/issues"
+  },
   "author": "Joel Denning <joeldenning@gmail.com>",
   "license": "MIT",
   "devDependencies": {
