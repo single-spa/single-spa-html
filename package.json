@@ -21,7 +21,7 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "version": "1.1.1",
+  "version": "1.1.2",
   "main": "lib/single-spa-html.js",
   "repository": "https://github.com/CanopyTax/single-spa-html.git",
   "author": "Joel Denning <joeldenning@gmail.com>",
