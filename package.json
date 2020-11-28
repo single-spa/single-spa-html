@@ -22,7 +22,7 @@
       "pre-commit": "pretty-quick --staged"
     }
   },
-  "version": "1.1.2",
+  "version": "1.2.0",
   "main": "lib/single-spa-html.js",
   "repository": "https://github.com/single-spa/single-spa-html.git",
   "bugs": {
