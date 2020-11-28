@@ -39,7 +39,7 @@ function bootstrap(opts, props) {
 function mount(opts, props) {
   return Promise.resolve().then(() => {
     const domElementGetter = chooseDomElementGetter(opts, props);
-    const domEl = domElementGetter();
+    const domEl = domElementGetter(props);
     if (!domEl) {
       throw Error(
         `single-spa-html: domElementGetter did not return a valid dom element`
@@ -55,7 +55,7 @@ function mount(opts, props) {
 function unmount(opts, props) {
   return Promise.resolve().then(() => {
     const domElementGetter = chooseDomElementGetter(opts, props);
-    const domEl = domElementGetter();
+    const domEl = domElementGetter(props);
     if (!domEl) {
       throw Error(
         `single-spa-html: domElementGetter did not return a valid dom element`

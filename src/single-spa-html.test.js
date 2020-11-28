@@ -1,7 +1,8 @@
 import singleSpaHtml from "./single-spa-html";
 
 describe("single-spa-html", () => {
-  const domElementGetter = () => document.getElementById("test-div");
+  const domElementGetter = props =>
+    document.getElementById((props && props.id) || "test-div");
   let props;
 
   beforeEach(() => {
@@ -44,6 +45,45 @@ describe("single-spa-html", () => {
       });
   });
 
+  it("provides props to dom getter", () => {
+    const div = document.createElement("div");
+    div.id = "props-div";
+    document.body.appendChild(div);
+
+    const localProps = {
+      ...props,
+      id: div.id
+    };
+
+    const lifecycles = singleSpaHtml({
+      template: "<some-web-component></some-web-component>",
+      domElementGetter
+    });
+
+    const domEl = domElementGetter(localProps);
+    expect(domEl.innerHTML.trim()).toBe("");
+    return lifecycles
+      .bootstrap(props)
+      .then(() => lifecycles.mount(localProps))
+      .then(() => {
+        expect(domEl.innerHTML.trim()).toBe(
+          "<some-web-component></some-web-component>"
+        );
+        return lifecycles.unmount(localProps);
+      })
+      .then(() => {
+        expect(domEl.innerHTML.trim()).toBe("");
+        return lifecycles.mount(localProps);
+      })
+      .then(() => {
+        expect(domEl.innerHTML.trim()).toBe(
+          "<some-web-component></some-web-component>"
+        );
+
+        document.getElementById(div.id).remove();
+      });
+  });
+
   it(`throws if you don't provide a template`, () => {
     expect(() => {
       singleSpaHtml({});
@@ -61,7 +101,8 @@ describe("single-spa-html", () => {
   it(`throws if you provide a domElementGetter that is not a function`, () => {
     expect(() => {
       singleSpaHtml({
-        template: 123
+        template: "123",
+        domElementGetter: "foo"
       });
     }).toThrow();
   });
