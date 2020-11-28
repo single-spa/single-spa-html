@@ -1,6 +1,6 @@
 const defaultOpts = {
   template: "",
-  domElementGetter: null
+  domElementGetter: null,
 };
 
 export default function singleSpaHtml(opts) {
@@ -28,7 +28,7 @@ export default function singleSpaHtml(opts) {
   return {
     bootstrap: bootstrap.bind(null, opts),
     mount: mount.bind(null, opts),
-    unmount: unmount.bind(null, opts)
+    unmount: unmount.bind(null, opts),
   };
 }
 

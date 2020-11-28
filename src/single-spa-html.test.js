@@ -1,7 +1,7 @@
 import singleSpaHtml from "./single-spa-html";
 
 describe("single-spa-html", () => {
-  const domElementGetter = props =>
+  const domElementGetter = (props) =>
     document.getElementById((props && props.id) || "test-div");
   let props;
 
@@ -20,7 +20,7 @@ describe("single-spa-html", () => {
   it("adds html to a provided dom element", () => {
     const lifecycles = singleSpaHtml({
       template: "<some-web-component></some-web-component>",
-      domElementGetter
+      domElementGetter,
     });
 
     const domEl = domElementGetter();
@@ -52,12 +52,12 @@ describe("single-spa-html", () => {
 
     const localProps = {
       ...props,
-      id: div.id
+      id: div.id,
     };
 
     const lifecycles = singleSpaHtml({
       template: "<some-web-component></some-web-component>",
-      domElementGetter
+      domElementGetter,
     });
 
     const domEl = domElementGetter(localProps);
@@ -93,7 +93,7 @@ describe("single-spa-html", () => {
   it(`throws if you provide a non-string template`, () => {
     expect(() => {
       singleSpaHtml({
-        template: 123
+        template: 123,
       });
     }).toThrow();
   });
@@ -102,16 +102,16 @@ describe("single-spa-html", () => {
     expect(() => {
       singleSpaHtml({
         template: "123",
-        domElementGetter: "foo"
+        domElementGetter: "foo",
       });
     }).toThrow();
   });
 
   it(`renders function template with custom props`, () => {
     const lifecycles = singleSpaHtml({
-      template: props =>
+      template: (props) =>
         `<some-web-component name=${props.name}></some-web-component>`,
-      domElementGetter
+      domElementGetter,
     });
 
     const domEl = domElementGetter();

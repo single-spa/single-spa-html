@@ -61,3 +61,10 @@ typings/
 .next
 
 lib
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
