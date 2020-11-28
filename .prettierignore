@@ -4,3 +4,4 @@ LICENSE
 yarn.lock
 .prettierignore
 .yarn
+.pnp.js
