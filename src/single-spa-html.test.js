@@ -125,4 +125,23 @@ describe("single-spa-html", () => {
         );
       });
   });
+
+  it(`renders function template as promise`, () => {
+    const lifecycles = singleSpaHtml({
+      template: (props) =>
+        Promise.resolve(`<some-web-component></some-web-component>`),
+      domElementGetter,
+    });
+
+    const domEl = domElementGetter();
+
+    return lifecycles
+      .bootstrap(props)
+      .then(() => lifecycles.mount(props))
+      .then(() => {
+        expect(domEl.innerHTML.trim()).toBe(
+          `<some-web-component></some-web-component>`
+        );
+      });
+  });
 });
