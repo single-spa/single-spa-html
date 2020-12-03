@@ -37,7 +37,9 @@ function bootstrap(opts, props) {
 }
 
 function mount(opts, props) {
-  return Promise.resolve().then(() => {
+  return Promise.resolve(
+    typeof opts.template === "function" ? opts.template(props) : opts.template
+  ).then((template) => {
     const domElementGetter = chooseDomElementGetter(opts, props);
     const domEl = domElementGetter(props);
     if (!domEl) {
@@ -45,10 +47,7 @@ function mount(opts, props) {
         `single-spa-html: domElementGetter did not return a valid dom element`
       );
     }
-    domEl.innerHTML =
-      typeof opts.template === "function"
-        ? opts.template(props)
-        : opts.template;
+    domEl.innerHTML = template;
   });
 }
 
