@@ -81,7 +81,7 @@ function defaultDomElementGetter(props) {
 
   if (!name) {
     throw Error(
-      `single-spa-html was not given an application name as a prop, so it can't make a unique dom element container for the ht l application`
+      `single-spa-html was not given an application name as a prop, so it can't make a unique dom element container for the html application`
     );
   }
   const htmlId = `single-spa-application:${name}`;
